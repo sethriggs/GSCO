@@ -1,37 +1,52 @@
-var car1, car2, car3, car4, wall;
+var car1, wall;
 var speed, weight;
 var deformation;
 
 function setup() {
-  createCanvas(1600,800);
+  createCanvas(800,500);
  speed = random(55,90);
  weight = random(400,1500);
 
- wall = createSprite(1500,200,60,height/2);
+ wall = createSprite(750,100,60,height/2);
+ wall.shapeColor = "blue";
  //car1.velocityx = 20;
 
- car1 = createSprite(50,200,50,50);
- car1.shapeColor=("red");
+ car1 = createSprite(50,100,50,50);
+ car1.shapeColor = ("white");
+ car1.velocityX = speed;
  
 
- car2 = createSprite(50,150,50,50);
- car2.shapeColor=("blue");
-
- car3 = createSprite(50,100,50,50);
- car3.shapeColor=("yellow");
-
- car4 = createSprite(50,50,50,50);
- car4.shapeColor=("green");
 
 }
 
 function draw() {
-  background(0,0,0);  
+  background("green");  
+if (wall.x - car1.x < (car1.width + wall.width)/2)
+{
+car1.velocityX = 0;
+deformation = 0.5 *width *speed *speed/22509;
+if (deformation > 180)
+{
+  car1.shapeColor = color(255,0,0);
+
+
+}
+
+if (deformation < 180 && deformation > 100)
+{
+  car1.shapeColor = color(230,230,0);
+}
+
+if (deformation < 100)
+{
+  car1.shapeColor = color(0,0,255);
+
+
+}
+}
  
- car1;
- car2;
- car3;
- car4;;
+ 
+ 
 
 
   drawSprites();
